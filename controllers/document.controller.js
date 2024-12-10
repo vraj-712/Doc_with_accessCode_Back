@@ -33,7 +33,19 @@ const createDocument =  asyncHandler(async (req, res) => {
 });
 
 const fetchAllDouments = asyncHandler(async (req, res) => {
-    const documents = await Document.find({}).select('-access_code -data');;
+    const {doc_name, doc_id, createdBy, startDate, endDate} = req.query
+    const queryObj = {}
+    if(doc_name) queryObj.doc_name = { $regex: doc_name, $options: 'i' }
+    if(doc_id) queryObj.doc_id = { $regex: doc_id, $options: 'i' }
+    if(createdBy) queryObj.createdBy = { $regex: createdBy, $options: 'i' }
+    if(startDate && endDate) {
+        queryObj.createdAt = {
+            $gte: new Date(startDate),
+            $lte: new Date(endDate),
+          };
+    }
+
+    const documents = await Document.find(queryObj).select('-access_code -data');;
     return res.status(200).json(new ApiResponse(200, true, "Documents fetched successfully", documents))
 })
 const accessingDocument = asyncHandler(async (req, res) => {
