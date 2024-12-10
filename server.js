@@ -27,6 +27,9 @@ const io = new Server(httpServer, {
 app.get("/health-check", (req, res) => {
     return res.status(200).json({ message: "ok" });
 })
+app.get("/", (req, res) => {
+    res.send("Hello World!");
+})
 
 import documentRoutes from "./routes/document.routes.js";
 
