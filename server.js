@@ -8,7 +8,7 @@ const app = express();
 const httpServer = http.createServer(app);
 
 app.use(cors({
-    origin: ["http://localhost:5173"],
+    origin: ["http://localhost:5173", "https://collaborative-doc.vercel.app"],
     credentials: true
 }));
 app.use(express.json());
@@ -17,7 +17,7 @@ app.use(express.urlencoded({extended: true}))
 
 const io = new Server(httpServer, {
     cors: {
-        origin: "*",
+        origin: ["https://collaborative-doc.vercel.app", "http://localhost:5173"],
         methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     },
 });
