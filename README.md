@@ -13,7 +13,7 @@ Welcome to the Collaborative Text Editor! This project is a real-time, cloud-bas
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/vraj-712/Doc_with_accessCode_Front.git
+   git clone https://github.com/vraj-712/Doc_with_accessCode_Back.git
    cd Doc_with_accessCode_Back
 2. Add dependency
 
