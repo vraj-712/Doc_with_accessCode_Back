@@ -9,6 +9,7 @@ const httpServer = http.createServer(app);
 
 app.use(cors({
     origin: ["http://localhost:5173", "https://collaborative-doc.vercel.app"],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     credentials: true
 }));
 app.use(express.json());
