@@ -45,7 +45,10 @@ const fetchAllDouments = asyncHandler(async (req, res) => {
           };
     }
 
-    const documents = await Document.find(queryObj).select('-access_code -data');;
+    const documents = await Document.find(queryObj).select('-access_code -data');
+    if(documents.length === 0) {
+        return res.status(404).json(new ApiResponse(404, false, "No documents found"))
+    }
     return res.status(200).json(new ApiResponse(200, true, "Documents fetched successfully", documents))
 })
 const accessingDocument = asyncHandler(async (req, res) => {
